@@ -1,0 +1,18 @@
+runtime: nodejs22
+instance_class: F1
+
+handlers:
+  # Serve static assets from the dist/assets folder
+  - url: /assets
+    static_dir: dist/assets
+
+  # Serve the index.html file for the root URL
+  - url: /
+    static_files: dist/index.html
+    upload: dist/index.html
+
+  # Catch-all handler for SPA (Single Page Application) routing.
+  # This ensures that any deep links are handled by the React app's index.html.
+  - url: /.*
+    static_files: dist/index.html
+    upload: dist/index.html
